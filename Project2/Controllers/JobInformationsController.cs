@@ -23,6 +23,7 @@ namespace Project2.Controllers
         }
 
         // GET: JobInformations
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> Index()
         {
             var dimentia_DatabaseContext = _context.JobInformation.Include(j => j.EmployeeNumberNavigation);

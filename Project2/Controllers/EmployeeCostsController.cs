@@ -21,8 +21,9 @@ namespace Project2.Controllers
             _context = context;
         }
 
-        [Authorize(Roles = "Manager")]
+
         // GET: EmployeeCosts
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> Index()
         {
             var dimentia_DatabaseContext = _context.EmployeeCost.Include(e => e.EmployeeNumberNavigation);

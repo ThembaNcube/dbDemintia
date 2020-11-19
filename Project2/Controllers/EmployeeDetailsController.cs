@@ -21,13 +21,15 @@ namespace Project2.Controllers
             _context = context;
         }
 
-        [Authorize(Roles ="Admin")]
+        //[Authorize(Roles ="Admin","Manager")]
         // GET: EmployeeDetails
+        [Authorize(Roles = "Manager,Admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.EmployeeDetails.ToListAsync());
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpGet]
         public async Task<IActionResult> Index(string getField)
         {
@@ -58,8 +60,9 @@ namespace Project2.Controllers
             return View(employeeDetails);
         }
 
-        [Authorize(Roles = "Manager")]
+
         // GET: EmployeeDetails/Create
+        [Authorize(Roles = "Manager")]
         public IActionResult Create()
         {
             return View();
@@ -82,8 +85,9 @@ namespace Project2.Controllers
         }
 
 
-        [Authorize(Roles = "Manager")]
+
         // GET: EmployeeDetails/Edit/5
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -134,8 +138,9 @@ namespace Project2.Controllers
             return View(employeeDetails);
         }
 
-        [Authorize(Roles = "Manager")]
+
         // GET: EmployeeDetails/Delete/5
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
